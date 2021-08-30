@@ -1,0 +1,10 @@
+This file tests all basic functions of potatoscript
+
+~                   script start
+
+-                   print start
+Hello world!
+_                   print end
+/                   newline
+
+~                   script end

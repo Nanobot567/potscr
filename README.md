@@ -5,4 +5,8 @@ the test.potscr code is a program containing every function, for testing purpose
 
 ### what is potatoscript?
 
-potatoscript is a language similar to unlambda.
+potatoscript is an esoteric programming language similar to unlambda.
+
+### how would you code in potatoscript?
+
+go [here](https://github.com/nanobot567/potscr)

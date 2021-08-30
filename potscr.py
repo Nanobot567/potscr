@@ -8,6 +8,8 @@ using_py = False
 s_e_c_ok = False
 len = 0
 curnum = 0
+lookinfortxt = False
+txtfound = ""
 helptxt = f"""
 
 potatoscript parser v{ver}    
@@ -54,10 +56,10 @@ if using_py:
     if argv[1].endswith(".potscr") or argv[1].endswith(".potato") or argv[1].endswith(".pscr"):
         file = open(argv[1],"r")
         readit = file.read()
-        if not readit.startswith("s"):
+        if not readit.startswith("~"):
             print("ERROR: This is not a PotatoScript file! Did you forget the @* in the beginning?")
         else:
-            if not readit.endswith("e"):
+            if not readit.endswith("~"):
                 print("ERROR: This file has no ending command")
             else:
                 s_e_c_ok = True
@@ -73,9 +75,15 @@ for c in readit:
 
 for i in range(0,len):
     if readit[curnum] == "-":
-        print("dash",end="")
-    elif readit[curnum] == "^":
-        print("carat",end="")
+        lookinfortxt = True
+    elif readit[curnum] == "_":
+        lookinfortxt = False
+        print(txtfound[1:])
+        txtfound = ""
     elif readit[curnum] == "\\":
         print("\n")
+    
+    if lookinfortxt:
+        txtfound += readit[curnum]
+
     curnum += 1
