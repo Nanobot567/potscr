@@ -65,7 +65,15 @@ if using_py:
                 s_e_c_ok = True
 else:
     if argv[0].endswith(".potscr") or argv[0].endswith(".potato") or argv[0].endswith(".pscr"):
-        print("file found")
+        file = open(argv[0],"r")
+        readit = file.read()
+        if not readit.startswith("~"):
+            print("ERROR: This is not a PotatoScript file! Did you forget the ~ in the beginning?")
+        else:
+            if not readit.endswith("~"):
+                print("ERROR: This file has no ending command")
+            else:
+                s_e_c_ok = True
 
 if not s_e_c_ok:
     exit()
