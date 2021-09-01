@@ -9,4 +9,4 @@ potatoscript is an esoteric programming language similar to unlambda.
 
 ### how would you code in potatoscript?
 
-go [here](https://github.com/nanobot567/potscr)
+go [here](https://nanobot567.github.io/potscr)

@@ -2,15 +2,19 @@
 
 from sys import argv
 import sys
+from time import sleep
 
-ver = "0.10" # format: major potscr release number (dot) commit number
+ver = "1.12" # format: major potscr release number (dot) commit number
+
 using_py = False
 s_e_c_ok = False
+lookinfortxt = False
 len = 0
 curnum = 0
-lookinfortxt = False
 txtfound = ""
 stored = ""
+storednum = 0
+
 helptxt = f"""
 
 potatoscript parser v{ver}    
@@ -85,18 +89,37 @@ for c in readit:
     len += 1
 
 for i in range(0,len):
-    if readit[curnum] == "-":
+    if readit[curnum] == "-": # start of print
         lookinfortxt = True
-    elif readit[curnum] == "_":
+    elif readit[curnum] == "_": # end of print
         lookinfortxt = False
-        print(txtfound[1:])
+        if readit[curnum+1] == "%": # percentage after means an alt version of the command, in this case no newline
+            sys.stdout.write(txtfound[1:])
+            sys.stdout.flush()
+        else:
+            print(txtfound[1:])
         txtfound = ""
-    elif readit[curnum] == "#":
+    elif readit[curnum] == "#": # get input
         stored = input()
-    elif readit[curnum] == "$":
+    elif readit[curnum] == "$": # print stored var
         print(stored,end="")
-    elif readit[curnum] == "/":
-        print("\n")
+    elif readit[curnum] == "/": # newline
+        print("")
+    elif readit[curnum] == "*": # reset stored number
+        storednum = 0
+    elif readit[curnum] == "+": # number +1
+        storednum += 1
+    elif readit[curnum] == "`": # number -1
+        storednum = storednum - 1
+    elif readit[curnum] == "^": # print stored num
+        print(storednum,end="")
+    elif readit[curnum] == "@": # sleep
+        try:
+            sleep(int(readit[curnum+1]))
+        except ValueError:
+            print(f"\nERROR: Char {curnum}: An integer is required for sleeping")
+            exit()
+        
     
     if lookinfortxt:
         txtfound += readit[curnum]

@@ -1,5 +1,16 @@
 ~
 This file tests all basic functions of potatoscript
 
+Print hello world
+/-Hello world!_/
 
--Hello world!_/~
+Count to 10
+/*+^+^+^+^+^+^+^+^+^+^+^/
+
+Get input and print it
+/-Type something:_#/-You typed_$/
+
+Print sleeping and wait for 3 seconds
+/-Sleeping_%@1-._%@1-._%@1-._/-Done!_/
+
+~
