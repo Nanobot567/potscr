@@ -3,7 +3,7 @@
 from sys import argv
 import sys
 
-ver = "1" # change this for each commit
+ver = "0.9" # format: major potscr release number (dot) commit number
 using_py = False
 s_e_c_ok = False
 len = 0
