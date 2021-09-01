@@ -5,7 +5,7 @@ Print hello world
 /-Hello world!_/
 
 Count to 10
-/*+^+^+^+^+^+^+^+^+^+^+^/
+/*+^+^+^+^+^+^+^+^+^+^/
 
 Get input and print it
 /-Type something:_#/-You typed_$/
