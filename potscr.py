@@ -3,7 +3,7 @@
 from sys import argv
 import sys
 
-ver = "0.9" # format: major potscr release number (dot) commit number
+ver = "0.10" # format: major potscr release number (dot) commit number
 using_py = False
 s_e_c_ok = False
 len = 0
@@ -40,11 +40,13 @@ if using_py:
         argv[1]
     except:
         print(noargtxt)
+        exit()
 else:
     try:
         argv[0]
     except:
         print(noargtxt)
+        exit()
 
 if using_py:
     if argv[1] == "--help" or argv[1] == "-h":
