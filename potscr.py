@@ -10,6 +10,7 @@ len = 0
 curnum = 0
 lookinfortxt = False
 txtfound = ""
+stored = ""
 helptxt = f"""
 
 potatoscript parser v{ver}    
@@ -88,10 +89,15 @@ for i in range(0,len):
         lookinfortxt = False
         print(txtfound[1:])
         txtfound = ""
-    elif readit[curnum] == "\\":
+    elif readit[curnum] == "#":
+        stored = input()
+    elif readit[curnum] == "$":
+        print(stored,end="")
+    elif readit[curnum] == "/":
         print("\n")
     
     if lookinfortxt:
         txtfound += readit[curnum]
+    
 
     curnum += 1
