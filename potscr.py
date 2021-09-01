@@ -4,7 +4,7 @@ from sys import argv
 import sys
 from time import sleep
 
-ver = "1.14" # format: major potscr release number (dot) commit number
+ver = "1.15" # format: major potscr release number (dot) commit number
 
 using_py = False
 s_e_c_ok = False
