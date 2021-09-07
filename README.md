@@ -1,7 +1,7 @@
 # potscr
 potatoscript parser
 
-the test.potscr code is a program containing every function, for testing purposes.
+who says you cant write a programming language without a brain?
 
 ### what is potatoscript?
 
@@ -16,5 +16,5 @@ go [here](https://nanobot567.github.io/potscr)
 * download the latest version of python from [their website](https://python.org/downloads/)
 * clone the latest version of potscr
 * open command prompt and change your directory to wherever you downloaded potscr-main to
-* type ```python potscr.py``` and your potatoscript file
+* type ```python potscr.py (potatoscript file path)```
 * your output will be showed in command prompt!
