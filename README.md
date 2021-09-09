@@ -1,5 +1,5 @@
 # potscr
-potatoscript parser
+## potatoscript parser
 
 who says you cant write a programming language without a brain?
 
@@ -13,8 +13,14 @@ go [here](https://nanobot567.github.io/potscr)
 
 ### how to parse potatoscript
 
-* download the latest version of python from [their website](https://python.org/downloads/)
+* download the latest version of python from [the website](https://python.org/downloads/)
 * clone the latest version of potscr
 * open command prompt and change your directory to wherever you downloaded potscr-main to
 * type ```python potscr.py (potatoscript file path)```
 * your output will be showed in command prompt!
+
+### to-do
+
+- add an interactive shell
+- add more stuff to the cli
+- unlimited char numeric addition

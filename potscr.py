@@ -5,7 +5,7 @@ import sys
 from time import sleep
 import os
 
-ver = "2.17" # format: major potscr release number (dot) commit number
+ver = "2.18" # format: major potscr release number (dot) commit number
 
 using_py = False
 script_ok = False
@@ -66,7 +66,7 @@ else:
 tempnum = -1
 for i in argv:
     tempnum += 1
-    print(tempnum,i)
+    # print(tempnum,i) -- for debugging
     if i == "--logpath" or i == "-l":
         logit = True
         try:
@@ -109,11 +109,12 @@ for c in readit:
     len += 1
 
 for i in range(0,len):
-    if readit[curnum] == "-": # start of print
+    char = readit[curnum]
+    if char == "-": # start of print
         lookinfortxt = True
         if logit:
             logfile.write("LOG: print start\n")
-    elif readit[curnum] == "_": # end of print
+    elif char == "_": # end of print
         lookinfortxt = False
         if readit[curnum+1] == "%": # percentage after means an alt version of the command, in this case no newline
             sys.stdout.write(txtfound[1:])
@@ -128,24 +129,32 @@ for i in range(0,len):
                 logfile.write("LOG: print end\n")
                 logfile.write(f"LOG: printed {txtfound[1:]}\n")
                 txtfound = ""
-    elif readit[curnum] == "#": # get input
-        stored = input()
-        if logit:
-            logfile.write("LOG: got input from user\n")
-            logfile.write(f"LOG: stored = {stored}\n")
-    elif readit[curnum] == "$": # print stored var
+    elif char == "#": # get input
+        temp = input()
+        if temp.isnumeric() and readit[curnum+1] == "%":
+            storednum = int(temp)
+            if logit:
+                logfile.write("LOG: got input from user\n")
+                logfile.write(f"LOG: storednum = {storednum}\n")
+        else:
+            stored = temp
+            if logit:
+                logfile.write("LOG: got input from user\n")
+                logfile.write(f"LOG: stored = {stored}\n")
+
+    elif char == "$": # print stored var
         print(stored,end="")
         if logit:
             logfile.write(f"LOG: printed stored ({stored})\n")
-    elif readit[curnum] == "/": # newline
+    elif char == "/": # newline
         print("")
         if logit:
             logfile.write("LOG: printed newline\n")
-    elif readit[curnum] == "*": # reset stored number
+    elif char == "*": # reset stored number
         storednum = 0
         if logit:
             logfile.write("LOG: storednum reset\n")
-    elif readit[curnum] == "+": # number +1
+    elif char == "+": # number +1
         if readit[curnum+1] == "%":
             if readit[curnum+2].isnumeric():
                 storednum += int(readit[curnum+2])
@@ -158,7 +167,7 @@ for i in range(0,len):
             if logit:
                 logfile.write(f"LOG: added one to storednum (now {storednum})\n")
         
-    elif readit[curnum] == "`": # number -1
+    elif char == "`": # number -1
         if readit[curnum+1] == "%":
             if readit[curnum+2].isnumeric():
                 storednum -= int(readit[curnum+2])
@@ -170,11 +179,11 @@ for i in range(0,len):
             storednum -= 1
             if logit:
                 logfile.write(f"LOG: subtracted one from storednum (now {storednum})\n")
-    elif readit[curnum] == "^": # print stored num
+    elif char == "^": # print stored num
         print(storednum,end="")
         if logit:
             logfile.write(f"LOG: printed storednum ({storednum})\n")
-    elif readit[curnum] == "@": # sleep
+    elif char == "@": # sleep
         try:
             sleep(int(readit[curnum+1]))
             if logit:
@@ -184,6 +193,6 @@ for i in range(0,len):
             exit()
     
     if lookinfortxt:
-        txtfound += readit[curnum]
+        txtfound += char
 
     curnum += 1
