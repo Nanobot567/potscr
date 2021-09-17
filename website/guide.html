@@ -1,23 +1,14 @@
 <!DOCTYPE html>
 <html>
-    <style>
-        h1{
-            color:sienna;
-            font-family: "Segoe UI";
-            font-size: 45px;
-        }
-        code{
-            color: sienna;
-            font-size: 15px;
-        }
-    </style>
+    
 
     <head>
         <title>potatoscript - guide</title>
         <link rel="icon" type="image/png" href="https://nanobot567.github.io/potscr/website/favicon.png"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
     </head>
     <body>
-        <a href="https://nanobot567.github.io/potscr/index.html">back</a>
+        <a href="https://nanobot567.github.io/potscr/index.html"><button>back</button></a>
         <h1>potatoscript guide</h1>
         <h2>basics</h2>
         <h4>
@@ -73,24 +64,34 @@
                 "`" - subtract one from the stored number
             </li>
             <li>
+                ">" - multiply the stored number by the integer specified
+            </li>
+            <li>
+                "&" - divide the stored number by the integer specified
+            </li>
+            <li>
                 "^" - print the stored number
             </li>
             <li>
                 "@" - sleep for the integer after the indicator
             </li>
             <li>
-                "%" - alt version of command
+                "%" - alt version of the indicator
             </li>
                 
         </ul>
         <h2>alt commands</h2>
-        <h3><code>+</code></h3>
-        <h4>depending on how you use %, the + indicator can do different things.</h4>
-        <h4>if % is behind an integer and is in front of +, the stored number is increased by that integer. </h4>
-        <h4>if not, the stored number is increased by 5.</h4>
+        <h3><code>+, -, >, and & (math indicators)</code></h3>
+        <h4>depending on how you use %, these indicators can do different things.</h4>
+        <h4>if % is behind an integer and is in front of a math indicator, the stored number is increased, decreased, multiplied, or divided by that integer, depending on which indicator you use.</h4>
+        <h4>if not, the stored number is increased, decreased, multiplied, or divided by 5.</h4>
         <p></p>
-        <h4>NOTE: the integer to be added can only be 1 character long for the addition to work properly.</h4>
-        <h3><code>-</code></h3>
-        <h4>the same commands as + are preformed if % is in front of -.</h4>
+        <h4>NOTE: the integer to be used can only be 1 character long for the operation to work as expected.</h4>
+        <p></p>
+        <h3><code>_ (print end)</code></h3>
+        <h4>if % is in front of _, the string printed has no newline printed at the end.</h4>
+        <p></p>
+        <h3><code># (get input)</code></h3>
+        <h4>if % is used, the input gathered from the user is stored as an integer.</h4>
     </body>
 </html>

@@ -1,0 +1,35 @@
+h1{
+    color:sienna;
+    font-family: "Segoe UI";
+    font-size: 45px;
+    width:100%;
+    overflow:hidden;
+    }
+code{
+        color: sienna;
+        font-size: 15px;
+    }
+
+img{
+    animation: slide 3s;
+    width: 400px;
+}
+button{
+    background-color: sienna;
+    color: white;
+}
+
+
+@keyframes slide {
+    from {
+        margin-left: 20%;
+        opacity: 0%; 
+    }
+
+    to {
+        margin-left: 0%;
+        opacity: 100%;
+        
+    }
+    
+}

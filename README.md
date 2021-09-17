@@ -13,14 +13,8 @@ go [here](https://nanobot567.github.io/potscr)
 
 ### how to parse potatoscript
 
-* download the latest version of python from [the website](https://python.org/downloads/)
-* clone the latest version of potscr
-* open command prompt and change your directory to wherever you downloaded potscr-main to
-* type ```python potscr.py (potatoscript file path)```
-* your output will be showed in command prompt!
-
-### to-do
-
-- add an interactive shell
-- add more stuff to the cli
-- unlimited char numeric addition
+1. download the latest version of python from [the website](https://python.org/downloads/)
+2. clone the latest version of potscr
+3. open command prompt and change your directory to wherever you downloaded potscr-main to
+4. type ```python potscr.py (potatoscript file path)```
+5. your output will be showed in command prompt!

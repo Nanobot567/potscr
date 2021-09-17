@@ -1,22 +1,15 @@
 <html>
     <style>
-        h1{
-            color:sienna;
-            font-family: "Segoe UI";
-            font-size: 45px;
-        }
-        code{
-            color: sienna;
-            font-size: 15px;
-        }
+    
     </style>
 
     <head>
         <title>potatoscript - cli</title>
-        <link rel="icon" type="image/png" href="website/favicon.png"/>
+        <link rel="icon" type="image/png" href="website/img/favicon.png"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
     </head>
     <body>
-        <a href="https://nanobot567.github.io/potscr/index.html">back</a>
+        <a href="https://nanobot567.github.io/potscr/index.html"><button>back</button></a>
         <h1>potatoscript cli</h1>
         <h2>usage</h2>
         <h4>to parse a potatoscript file, follow these steps: </h4>
@@ -28,7 +21,7 @@
                 navigate to the directory where your potatoscript file is stored using cd.
             </li>
             <li>
-                run "(path_to_potscr.py) (potatoscript file)"". if no errors are found, the code will excecute.
+                run "(path_to_potscr.py) (potatoscript file)". if no errors are found, the code will excecute.
             </li>
         </ul>
         <h2>arguments</h2>
@@ -38,5 +31,7 @@
         <h4>sets a path for a log file.</h4>
         <h4>example:</h4>
         <code>potscr.py test_files/maths.potscr --logpath maths_log.txt</code>
+        <h3>-s or --shell</h3>
+        <h4>starts the potatoscript shell prompt</h4>
     </body>
 </html>
