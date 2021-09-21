@@ -17,6 +17,17 @@ img{
 button{
     background-color: sienna;
     color: white;
+    transition-duration: 0.2s;
+}
+  
+button:hover {
+    background-color: white;
+    color: sienna;
+    cursor: pointer;
+}
+button.dl{
+    padding: 5px;
+    font-size: 14px;
 }
 
 
@@ -31,5 +42,4 @@ button{
         opacity: 100%;
         
     }
-    
 }

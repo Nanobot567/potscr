@@ -6,7 +6,7 @@ from os import remove
 from files.shell import shell
 from shutil import rmtree
 
-ver = "3.19" # format: major potscr release number (dot) commit number
+ver = "3.21" # format: major potscr release number (dot) commit number
 
 using_py = False
 script_ok = False
@@ -219,6 +219,10 @@ if not shell_ok:
                 if logit:
                     logfile.write("LOG: got input from user\n")
                     logfile.write(f"LOG: storednum = {storednum}\n")
+            elif readit[curnum+2] == "!" and readit[curnum+1] == "%":
+                stored = stored+temp
+                if logit:
+                    logfile.write(f"LOG: appended {temp} to stored, now {stored}")
             elif readit[curnum+1] == "%" and not temp.isnumeric():
                 print("ERROR: Input must be an integer!")
                 if logit:
@@ -267,11 +271,11 @@ if not shell_ok:
                 print(f"\nERROR: Char {curnum}: An integer is required for sleeping")
                 exit()
         
+        
                 
         
+
         if lookinfortxt:
             txtfound += char
 
         curnum += 1
-
-        

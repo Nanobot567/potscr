@@ -1,5 +1,6 @@
 from sys import stdout
 from time import sleep
+from os import system
 
 storednum = 0
 
@@ -10,7 +11,12 @@ def shell():
     lookinfortxt = ""
     firstTime = True
     stored = ""
-    shellver = 1.0
+    shellver = 1.2
+
+    try:
+        system("cls")
+    except:
+        print("\n\n")
 
     while True:
         curnum = 0
@@ -82,6 +88,8 @@ def shell():
                 try:
                     if temp.isnumeric() and shellIn[curnum+1] == "%":
                         storednum = int(temp)
+                    elif shellIn[curnum+2] == "!" and shellIn[curnum+1] == "%":
+                        stored = stored+temp
                     elif shellIn[curnum+1] == "%" and not temp.isnumeric():
                         print("ERROR: Input must be an integer!")
                         exit()
