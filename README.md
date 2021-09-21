@@ -1,4 +1,5 @@
 # potscr
+![potatoscript logo](/website/img/potscr.png "potatoscript logo")
 ## potatoscript parser
 
 who says you cant write a programming language without a brain?
