@@ -11,7 +11,7 @@ def shell():
     lookinfortxt = ""
     firstTime = True
     stored = ""
-    shellver = 1.2
+    shellver = 1.4
 
     try:
         system("cls")
@@ -34,35 +34,38 @@ def shell():
 
         def mathsomethin(type):
             global storednum
-            try:
-                if shellIn[curnum+1] == "%":
-                    if shellIn[curnum+2].isnumeric():
-                        if type == "+":
-                            storednum += int(shellIn[curnum+2])
-                        elif type == "-":
-                            storednum -= int(shellIn[curnum+2])
-                        elif type == "*":
-                            storednum = storednum * int(shellIn[curnum+2])
-                        elif type == "/":
-                            storednum = storednum / int(shellIn[curnum+2])
-                    else:
-                        if type == "+":
-                            storednum += 5
-                        elif type == "-":
-                            storednum -= 5
-                        elif type == "*":
-                            storednum = storednum * 5
-                        elif type == "/":
-                            storednum = storednum / 5                
-            except IndexError:
-                if type == "+":
-                    storednum += 1
-                elif type == "-":
-                    storednum -= 1
-                elif type == "*":
-                    storednum = storednum * 1
-                elif type == "/":
-                    storednum = storednum / 1
+            if lookinfortxt:
+                pass
+            else:
+                try:
+                    if shellIn[curnum+1] == "%":
+                        if shellIn[curnum+2].isnumeric():
+                            if type == "+":
+                                storednum += int(shellIn[curnum+2])
+                            elif type == "-":
+                                storednum -= int(shellIn[curnum+2])
+                            elif type == "*":
+                                storednum = storednum * int(shellIn[curnum+2])
+                            elif type == "/":
+                                storednum = storednum / int(shellIn[curnum+2])
+                        else:
+                            if type == "+":
+                                storednum += 5
+                            elif type == "-":
+                                storednum -= 5
+                            elif type == "*":
+                                storednum = storednum * 5
+                            elif type == "/":
+                                storednum = storednum / 5                
+                except IndexError:
+                    if type == "+":
+                        storednum += 1
+                    elif type == "-":
+                        storednum -= 1
+                    elif type == "*":
+                        storednum = storednum * 1
+                    elif type == "/":
+                        storednum = storednum / 1
 
 
 
@@ -84,19 +87,22 @@ def shell():
                     print(txtfound[1:])
                     txtfound = ""
             elif char == "#": # get input
-                temp = input()
-                try:
-                    if temp.isnumeric() and shellIn[curnum+1] == "%":
-                        storednum = int(temp)
-                    elif shellIn[curnum+2] == "!" and shellIn[curnum+1] == "%":
-                        stored = stored+temp
-                    elif shellIn[curnum+1] == "%" and not temp.isnumeric():
-                        print("ERROR: Input must be an integer!")
-                        exit()
-                    else:
+                if lookinfortxt:
+                    pass
+                else:
+                    temp = input()
+                    try:
+                        if temp.isnumeric() and shellIn[curnum+1] == "%":
+                            storednum = int(temp)
+                        elif shellIn[curnum+2] == "!" and shellIn[curnum+1] == "%":
+                            stored = stored+temp
+                        elif shellIn[curnum+1] == "%" and not temp.isnumeric():
+                            print("ERROR: Input must be an integer!")
+                            exit()
+                        else:
+                            stored = temp
+                    except:
                         stored = temp
-                except:
-                    stored = temp
 
             elif char == "$": # print stored var
                 print(stored,end="")
@@ -122,13 +128,34 @@ def shell():
                     print(storednum)
                
             elif char == "@": # sleep
-                try:
-                    sleep(int(shellIn[curnum+1]))
-                except ValueError:
-                    print(f"\nERROR: Char {curnum}: An integer is required for sleeping")
-                    exit()
-            
-                    
+                if lookinfortxt:
+                    pass
+                else:
+                    try:
+                        sleep(int(shellIn[curnum+1]))
+                    except ValueError:
+                        print(f"\nERROR: Char {curnum}: An integer is required for sleeping")
+                        exit()
+            elif char == "!":
+                if lookinfortxt:
+                    pass
+                else:
+                    try:
+                        if shellIn[curnum+1] == "%":
+                            try:
+                                compnum = shellIn[curnum+2]
+                                if int(compnum) == storednum:
+                                    break
+                                else:
+                                    pass
+                            except ValueError:
+                                print(f"ERROR: integer expected at char {curnum}, got {shellIn[curnum+2]}")
+                            except IndexError:
+                                print(f"ERROR: % found, but no char found afterwards.")
+                        else:
+                            break
+                    except IndexError:
+                        break
             
             if lookinfortxt:
                 txtfound += char

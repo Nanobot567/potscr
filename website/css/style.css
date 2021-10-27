@@ -10,7 +10,7 @@ code{
         font-size: 15px;
     }
 
-img{
+img.logo{
     animation: slide 3s;
     width: 400px;
 }

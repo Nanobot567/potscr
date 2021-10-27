@@ -1,5 +1,6 @@
 # potscr
-![potatoscript logo](/website/img/potscr.png "potatoscript logo")
+![version](https://img.shields.io/github/v/release/Nanobot567/potscr)
+![](https://img.shields.io/github/repo-size/Nanobot567/potscr?color=darkgreen&label=size)
 ## potatoscript parser
 
 who says you cant write a programming language without a brain?
