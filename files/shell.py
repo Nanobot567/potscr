@@ -11,7 +11,7 @@ def shell():
     lookinfortxt = ""
     firstTime = True
     stored = ""
-    shellver = 1.4
+    shellver = 1.5
 
     try:
         system("cls")

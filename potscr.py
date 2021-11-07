@@ -6,7 +6,7 @@ from os import remove
 from files.shell import shell
 from shutil import rmtree
 
-ver = "3.23" # format: major potscr release number (dot) commit number
+ver = "3.24" # format: major potscr release number (dot) commit number
 
 using_py = False
 script_ok = False
@@ -41,8 +41,10 @@ potatoscript parser v{ver}
 for help, type 'potscr --help' or 'potscr -h'
             
             """
-
-rmtree("files\__pycache__")
+try:
+    rmtree("files\__pycache__")
+except:
+    pass
 
 if argv[0] == "potscr" or argv[0] == "potscr.py":
     using_py = True
