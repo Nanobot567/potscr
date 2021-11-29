@@ -11,7 +11,7 @@ def shell():
     lookinfortxt = ""
     firstTime = True
     stored = ""
-    shellver = 1.5
+    shellver = 1.6
 
     try:
         system("cls")
@@ -141,6 +141,21 @@ def shell():
                     pass
                 else:
                     try:
+                        if shellIn[curnum-2] == "#":
+                            pass
+                        else:
+                            if shellIn[curnum+1] == "%":
+                                try:
+                                    compnum = shellIn[curnum+2]
+                                    if int(compnum) == storednum:
+                                        break
+                                    else:
+                                        pass
+                                except ValueError:
+                                    print(f"ERROR: integer expected at char {curnum}, got {readit[curnum+2]}")
+                            else:
+                                break
+                    except:
                         if shellIn[curnum+1] == "%":
                             try:
                                 compnum = shellIn[curnum+2]
@@ -149,13 +164,9 @@ def shell():
                                 else:
                                     pass
                             except ValueError:
-                                print(f"ERROR: integer expected at char {curnum}, got {shellIn[curnum+2]}")
-                            except IndexError:
-                                print(f"ERROR: % found, but no char found afterwards.")
+                                print(f"ERROR: integer expected at char {curnum}, got {readit[curnum+2]}")
                         else:
                             break
-                    except IndexError:
-                        break
             
             if lookinfortxt:
                 txtfound += char

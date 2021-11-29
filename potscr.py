@@ -6,7 +6,7 @@ from os import remove
 from files.shell import shell
 from shutil import rmtree
 
-ver = "3.24" # format: major potscr release number (dot) commit number
+ver = "3.25" # format: major potscr release number (dot) commit number
 
 using_py = False
 script_ok = False
@@ -124,6 +124,9 @@ if shell_ok:
 # when this is updated, copy-paste into shell.py
 
 if not shell_ok:
+    if logit:
+        def log(txt):
+            logfile.write(txt)
     def mathsomethin(type):
         if lookinfortxt:
             pass
@@ -142,13 +145,13 @@ if not shell_ok:
 
                     if logit:
                         if type == "+":
-                            logfile.write(f"LOG: added {int(readit[curnum+2])} to storednum (now {storednum})\n")
+                            log(f"LOG: added {int(readit[curnum+2])} to storednum (now {storednum})\n")
                         elif type == "-":
-                            logfile.write(f"LOG: subtracted {int(readit[curnum+2])} from storednum (now {storednum})\n")
+                            log(f"LOG: subtracted {int(readit[curnum+2])} from storednum (now {storednum})\n")
                         elif type == "*":
-                            logfile.write(f"LOG: multiplied {int(readit[curnum+2])} by storednum (now {storednum})\n")
+                            log(f"LOG: multiplied {int(readit[curnum+2])} by storednum (now {storednum})\n")
                         elif type == "/":
-                            logfile.write(f"LOG: divided {int(readit[curnum+2])} by storednum (now {storednum})\n")
+                            log(f"LOG: divided {int(readit[curnum+2])} by storednum (now {storednum})\n")
                 else:
                     if type == "+":
                         storednum += 5
@@ -161,13 +164,13 @@ if not shell_ok:
 
                     if logit:
                         if type == "+":
-                            logfile.write(f"LOG: added 5 to storednum (now {storednum})\n")
+                            log(f"LOG: added 5 to storednum (now {storednum})\n")
                         elif type == "-":
-                            logfile.write(f"LOG: subtracted 5 from storednum (now {storednum})\n")
+                            log(f"LOG: subtracted 5 from storednum (now {storednum})\n")
                         elif type == "*":
-                            logfile.write(f"LOG: multiplied 5 by storednum (now {storednum})\n")
+                            log(f"LOG: multiplied 5 by storednum (now {storednum})\n")
                         elif type == "/":
-                            logfile.write(f"LOG: divided 5 by storednum (now {storednum})\n")
+                            log(f"LOG: divided 5 by storednum (now {storednum})\n")
             else:
                 if type == "+":
                     storednum += 1
@@ -180,13 +183,13 @@ if not shell_ok:
 
                 if logit:
                     if type == "+":
-                        logfile.write(f"LOG: added 1 to storednum (now {storednum})\n")
+                        log(f"LOG: added 1 to storednum (now {storednum})\n")
                     elif type == "-":
-                        logfile.write(f"LOG: subtracted 1 from storednum (now {storednum})\n")
+                        log(f"LOG: subtracted 1 from storednum (now {storednum})\n")
                     elif type == "*":
-                        logfile.write(f"LOG: multiplied 1 by storednum (now {storednum})\n")
+                        log(f"LOG: multiplied 1 by storednum (now {storednum})\n")
                     elif type == "/":
-                        logfile.write(f"LOG: divided 1 by storednum (now {storednum})\n")
+                        log(f"LOG: divided 1 by storednum (now {storednum})\n")
 
 
     for i in range(0,readit.__len__()):
@@ -194,7 +197,7 @@ if not shell_ok:
         if char == "-": # start of print
             lookinfortxt = True
             if logit:
-                logfile.write("LOG: print start\n")
+                log("LOG: print start\n")
         elif char == "_": # end of print
             lookinfortxt = False
             try:
@@ -202,20 +205,20 @@ if not shell_ok:
                     stdout.write(txtfound[1:])
                     stdout.flush()
                     if logit:
-                        logfile.write("LOG: print end (no newline)\n")
-                        logfile.write(f"LOG: printed {txtfound[1:]}\n")
+                        log("LOG: print end (no newline)\n")
+                        log(f"LOG: printed {txtfound[1:]}\n")
                     txtfound = ""
                 else:
                     print(txtfound[1:])
                     if logit:
-                        logfile.write("LOG: print end\n")
-                        logfile.write(f"LOG: printed {txtfound[1:]}\n")
+                        log("LOG: print end\n")
+                        log(f"LOG: printed {txtfound[1:]}\n")
                     txtfound = ""
             except IndexError:
                 print(txtfound[1:])
                 if logit:
-                    logfile.write("LOG: print end\n")
-                    logfile.write(f"LOG: printed {txtfound[1:]}\n")
+                    log("LOG: print end\n")
+                    log(f"LOG: printed {txtfound[1:]}\n")
                 txtfound = ""
         elif char == "#": # get input
             if lookinfortxt: # if compiling the string to be printed, don't get input
@@ -225,22 +228,22 @@ if not shell_ok:
                 if temp.isnumeric() and readit[curnum+1] == "%":
                     storednum = int(temp)
                     if logit:
-                        logfile.write("LOG: got input from user\n")
-                        logfile.write(f"LOG: storednum = {storednum}\n")
+                        log("LOG: got input from user\n")
+                        log(f"LOG: storednum = {storednum}\n")
                 elif readit[curnum+2] == "!" and readit[curnum+1] == "%":
                     stored = stored+temp
                     if logit:
-                        logfile.write(f"LOG: appended {temp} to stored, now {stored}")
+                        log(f"LOG: appended {temp} to stored, now {stored}")
                 elif readit[curnum+1] == "%" and not temp.isnumeric():
                     print("ERROR: Input must be an integer!")
                     if logit:
-                        logfile.write("ERROR: Input must be an integer!")
+                        log("ERROR: Input must be an integer!")
                     exit()
                 else:
                     stored = temp
                     if logit:
-                        logfile.write("LOG: got input from user\n")
-                        logfile.write(f"LOG: stored = {stored}\n")
+                        log("LOG: got input from user\n")
+                        log(f"LOG: stored = {stored}\n")
 
         elif char == "$": # print stored var
             if lookinfortxt:
@@ -248,18 +251,18 @@ if not shell_ok:
             else:
                 print(stored,end="")
             if logit:
-                logfile.write(f"LOG: printed stored ({stored})\n")
+                log(f"LOG: printed stored ({stored})\n")
         elif char == "/": # newline
             print("")
             if logit:
-                logfile.write("LOG: printed newline\n")
+                log("LOG: printed newline\n")
         elif char == "*": # reset stored number
             if lookinfortxt:
                 pass
             else:
                 storednum = 0
                 if logit:
-                    logfile.write("LOG: storednum reset\n")
+                    log("LOG: storednum reset\n")
         elif char == "+": # number +
             mathsomethin("+")
         elif char == "`": # number -
@@ -278,7 +281,7 @@ if not shell_ok:
                     print(storednum)
             
                 if logit:
-                    logfile.write(f"LOG: printed storednum ({storednum})\n")
+                    log(f"LOG: printed storednum ({storednum})\n")
         elif char == "@": # sleep
             if lookinfortxt:
                 pass
@@ -286,40 +289,43 @@ if not shell_ok:
                 try:
                     sleep(int(readit[curnum+1]))
                     if logit:
-                        logfile.write(f"LOG: slept for {int(readit[curnum+1])} second(s)\n")
+                        log(f"LOG: slept for {int(readit[curnum+1])} second(s)\n")
                 except ValueError:
                     print(f"\nERROR: Char {curnum}: An integer is required for sleeping")
                     if logit:
-                        logfile.write(f"ERROR: char {curnum}: an integer is required for sleeping\n")
+                        log(f"ERROR: char {curnum}: an integer is required for sleeping\n")
                     exit()
         
-        # implement somehow
-        # elif char == "?":
+        # implement if statements somehow
+        # elif char == "[":
         #     lookinforendif = True
-        # elif char == "!":
+        # elif char == "]":
         #     lookinforendif = False
 
-        elif char == "!":
+        elif char == "!": # force stop
             if lookinfortxt:
                 pass
             else:
-                if readit[curnum+1] == "%":
-                    try:
-                        compnum = readit[curnum+2]
-                        if int(compnum) == storednum:
-                            if logit:
-                                logfile.write(f"LOG: force stop at char {curnum} becuase {storednum}={readit[curnum+2]}")
-                            break
-                        else:
-                            if logit:
-                                logfile.write(f"LOG: compared {storednum} to {readit[curnum+2]}, result false\n")
-                            pass
-                    except ValueError:
-                        print(f"ERROR: integer expected at char {curnum}, got {readit[curnum+2]}")
+                if readit[curnum-2] == "#" and readit[curnum-1] == "%": # checks for input. if yea, then don't force stop.
+                    pass
                 else:
-                    if logit:
-                        logfile.write(f"LOG: force stop at char {curnum}\n")
-                    break
+                    if readit[curnum+1] == "%":
+                        try:
+                            compnum = readit[curnum+2]
+                            if int(compnum) == storednum:
+                                if logit:
+                                    log(f"LOG: force stop at char {curnum} becuase {storednum}={readit[curnum+2]}")
+                                break
+                            else:
+                                if logit:
+                                    log(f"LOG: compared {storednum} to {readit[curnum+2]}, result false\n")
+                                pass
+                        except ValueError:
+                            print(f"ERROR: integer expected at char {curnum}, got {readit[curnum+2]}")
+                    else:
+                        if logit:
+                            log(f"LOG: force stop at char {curnum}\n")
+                        break
 
 
         if lookinfortxt:
